@@ -1,0 +1,46 @@
+@extends('layouts.app')
+@section('title','Autorizar Claves y Autorizaciones Especiales')
+
+@section('content') 
+{!! Form::open(['url' => 'claves/autorizarAfiliadosTemporales', 'class' => 'form-horizontal', 'name' => 'autorizarAfiliadosTemporales','method' => 'GET']) !!}
+         <div class="errorMessages"></div>
+        <div class="form-group {{ $errors->has('ac_afiliados.nombre') || $errors->has('ac_carta_aval.cedula_afiliado') ? 'has-error' : ''}}">
+          {!! Form::label('ac_afiliados.nombre', 'Nombre Paciente: ', ['class' => 'col-sm-2 control-label']) !!}
+          <div class="col-sm-3">
+              {!! $filter->field('ac_afiliados.nombre',['onchange'=>"ValidarAlpha(this.value,'ac_afiliados_nombre')"]) !!}
+              {!! $errors->first('ac_afiliados.nombre', '<p class="help-block">:message</p>') !!}
+          </div>
+         
+          {!! Form::label('ac_carta_aval.cedula_afiliado', 'C.I: ', ['class' => 'col-sm-2 control-label']) !!}
+         <div class="col-sm-3">
+              {!! $filter->field('ac_carta_aval.cedula_afiliado') !!}
+              {!! $errors->first('ac_carta_aval.cedula_afiliado', '<p class="help-block">:message</p>') !!}
+          </div>
+        </div>      
+        <div class="form-group {{ $errors->has('ac_carta_aval.clave') || $errors->has('ac_estatus.id') ? 'has-error' : ''}}">
+          {!! Form::label('ac_carta_aval.clave', 'Clave: ', ['class' => 'col-sm-2 control-label']) !!}
+          <div class="col-sm-3">
+              {!! $filter->field('ac_carta_aval.clave',['onchange'=>"ValidarAlpha(this.value,'ac_carta_aval_clave')"]) !!}
+              {!! $errors->first('ac_carta_aval.clave', '<p class="help-block">:message</p>') !!}
+          </div>
+        </div>    
+  {!!$filter->footer!!}    
+  {!!$grid!!}    
+  {{ Form::close() }}
+@endsection
+@section('script')
+<script>
+ function ValidarAlpha(valor,campo){
+     var charRegExp = new RegExp("^[a-zA-Z]$") 
+     var Nombre = valor; 
+     if (Nombre.search(charRegExp)!=0 )
+        { 
+          $("#result").addClass("alert alert-danger");
+          $("#result").html("Debe introducir solo carácteres Alfabéticos"); 
+          $("#"+campo).focus(); 
+          return false;
+        } else return true;      
+ }; 
+
+</script>
+@endsection

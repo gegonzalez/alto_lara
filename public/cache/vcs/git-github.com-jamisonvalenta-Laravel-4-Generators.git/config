@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[remote "origin"]
+	url = https://693787f7394e4e884a9030fb58727632aea11a7b:x-oauth-basic@github.com/jamisonvalenta/Laravel-4-Generators.git
+	fetch = +refs/*:refs/*
+	mirror = true

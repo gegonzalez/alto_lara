@@ -1,0 +1,14 @@
+@extends('layouts.app')
+@section('title','Agregar Nuevo %%crudName%%')
+@section('content')
+    <hr/>
+    {!! Form::open(['url' => '%%routeGroup%%%%crudName%%', 'class' => 'form-horizontal']) !!}
+    %%formFieldsHtml%%
+
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-3">
+            {!! Form::submit('Guardar', ['class' => 'btn btn-primary form-control']) !!}
+        </div>
+    </div>
+    {!! Form::close() !!}
+@endsection
